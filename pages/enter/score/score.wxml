@@ -1,0 +1,21 @@
+<!--pages/enter/score/score.wxml-->
+<view class='container-input'>
+  <input type='idcard' placeholder='请输入身份证号' focus="true" bindConfirm='handleConfirm' bindblur='handleBlur' value='{{value}}' />
+</view>
+<view wx:if="{{infoVisible}}">
+  <view>
+    <text>报考类别：</text>
+    <text>{{type}}</text>
+  </view>
+  <view>
+    <text>成绩：</text>
+    <text>{{score}}</text>
+  </view>
+</view>
+<view class='btn-inquire'>
+  <button size='mini' type='primary' bindtap='handleInquire'>查询</button>
+</view>
+
+<view class='msg' wx:if="{{msgVisible}}">
+  <text>{{msg}}</text>
+</view>
