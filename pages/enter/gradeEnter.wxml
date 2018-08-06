@@ -1,40 +1,38 @@
 <!--pages/enter/gradeEnter.wxml-->
 <view>
   <form bindsubmit='formSubmit'>
-    <view class='section'>
-      <text class='label'>姓名：</text>
-      <input name='name' placeholder='请输入姓名' />
+    <view class='content' bindtap='handleStudentTap'>
+      <view class='item'>
+        <view class='left'>报考学员：</view>
+        <view class='right'>
+          <text class='right-title'></text>
+          <view wx:if="{{!user.id}}" class='right-icon'>请选择报名学员></view>
+          <view wx:else>{{user.name}}</view>
+        </view>
+        <input class='hidden' type='text' name='name' value='{{name}}' />
+      </view>
     </view>
     <view class='section'>
-      <text class='label'>手机号：</text>
-      <input name='phone' placeholder='请输入手机号' />
+      <text class='label'>考试类别：</text>
+      <picker name='examineType' bindchange="bindPickerChange" range-key="name" value="{{exampleIndex}}" range="{{examineType}}">
+        <view class="picker">
+          {{examineType[exampleIndex].name}}
+        </view>
+      </picker>
     </view>
     <view class='section'>
-      <text class='label'>身份证号：</text>
-      <input name='idCard' placeholder='请输入身份证号' />
+      <text class='label'>班级人数：</text>
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:key="{{item.id}}" wx:for="{{items}}">
+          <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+        </label>
+      </radio-group>
     </view>
     <view class='section'>
       <text class='label'>身份选择：</text>
       <picker name='idType' bindchange="bindIdPickerChange" value="{{idIndex}}" range="{{idArray}}">
         <view class="picker">
           {{idArray[idIndex]}}
-        </view>
-      </picker>
-    </view>
-    <view class='section'>
-      <text class='label'>单位：</text>
-      <input name='address' placeholder='学校+学院+班级/工作单位' />
-    </view>
-    <view class='section'>
-      <text class='label'>考试类别：</text>
-      <checkbox-group name='exampleType' wx:if="{{exampleIndex===-1}}">
-        <label wx:for="{{exampleArray}}" wx:for-item="item" wx:key="name">
-    <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
-  </label>
-      </checkbox-group>
-      <picker wx:else name='exampleType' bindchange="bindPickerChange" value="{{exampleIndex}}" range="{{exampleArray}}">
-        <view class="picker">
-          {{exampleArray[exampleIndex]}}
         </view>
       </picker>
     </view>

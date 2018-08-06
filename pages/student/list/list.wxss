@@ -1,0 +1,15 @@
+/* pages/student/list/list.wxss */
+
+.section {
+  border-bottom: 1rpx solid #dfdfdf;
+  height: 70rpx;
+  line-height: 70rpx;
+  padding: 0 15rpx;
+}
+
+.btn-add {
+  position: fixed;
+  bottom: 30rpx;
+  display: flex;
+  width: 100%;
+}

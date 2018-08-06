@@ -1,39 +1,6 @@
-/* pages/enter/gradeEnter.wxss */
-
 page {
   background-color: #efeff4;
   font-size: 35rpx;
-}
-
-.item {
-  background-color: #fff;
-  display: flex;
-  justify-content: space-between;
-  padding: 30rpx 10rpx 30rpx 35rpx;
-  border-bottom: 1rpx solid #dfdfdf;
-}
-.content:active {
-  background-color: #dfdfdf;
-}
-
-.item .right {
-  padding-right:25rpx;
-  display: flex;
-}
-.item .right .right-title {
-  padding-right: 20rpx;
-  width: 145rpx;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  text-align: right;
-}
-.item .right .right-icon {
-  color: #dfdfdf;
-}
-.hidden {
-  visibility: hidden;
-  display: none;
 }
 
 .section {

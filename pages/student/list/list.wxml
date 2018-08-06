@@ -1,0 +1,8 @@
+<view>
+  <block wx:for="{{list}}" wx:for-item="item" wx:key="id">
+    <view class='section'>{{item.name}}</view>
+  </block>
+  <view class='btn-add'>
+    <button size='mini' type='primary'>新增学员</button>
+  </view>
+</view>
