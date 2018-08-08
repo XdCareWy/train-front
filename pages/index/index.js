@@ -1,12 +1,14 @@
 //index.js
 const { BIM_LEVEL, CAD_LEVEL, BIM_APPLY, MY_SCORE, GROUP, MY_SUBJECT } = getApp().globalData.enterType;
+const {BASE_URL} = getApp().globalData.config;
 
 Page({
   data: {
-
+    course: []
   },
   onLoad: function () {
-
+    console.log(BASE_URL)
+    this.getCourseData()
   },
   onShow: function () {
 
@@ -36,5 +38,13 @@ Page({
         url: navigateUrl,
       })
     }
+  },
+  getCourseData: function () {
+    wx.request({
+      url: BASE_URL + "/course/classify",
+      success: (req) => {
+        console.log(req)
+      }
+    })
   }
 })

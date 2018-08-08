@@ -1,12 +1,12 @@
 const config = {
-  devHost: "http://192.168.103.252:3000",
+  devHost: "https://easy-mock.com/mock/5b698e437059a355fd430849/train",
   host: "https://zxdyue.top",
   imgPath: "http://p3trypz19.bkt.clouddn.com/"
 };
 
 module.exports = {
   config: {
-    BASE_URL: config.host,
+    BASE_URL: config.devHost,
     BASE_IMG_URL: config.imgPath
   }
 };

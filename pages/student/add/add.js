@@ -16,7 +16,9 @@ Page({
   
   },
 
-  formSubmit: function() {
-    
+  formSubmit: function(e) {
+    console.log(e.detail.value)
+    // todo: 添加到服务器
+    wx.navigateBack();
   }
 })

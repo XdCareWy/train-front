@@ -1,4 +1,5 @@
 // pages/student/list/list.js
+import request from '../../../utils/util.js';
 Page({
 
   /**
@@ -19,6 +20,7 @@ Page({
    */
   onLoad: function(options) {
 
+    console.log('onLoad')
   },
 
   /**
@@ -26,13 +28,14 @@ Page({
    */
   onReady: function() {
 
+    console.log('onReady')
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    console.log('show')
   },
 
   /**
@@ -40,6 +43,7 @@ Page({
    */
   onHide: function() {
 
+    console.log('hide')
   },
 
   /**
@@ -48,25 +52,20 @@ Page({
   onUnload: function() {
 
   },
-
   /**
-   * 页面相关事件处理函数--监听用户下拉动作
+   * 跳转到新增学员页面
    */
-  onPullDownRefresh: function() {
-
+  jumpAddStudent: function() {
+    wx.navigateTo({
+      url: '../add/add',
+    })
   },
-
   /**
-   * 页面上拉触底事件的处理函数
+   * 请求学员数据
    */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
+  getStudents: function() {
+    request({
+      url: '',
+    })
   }
 })

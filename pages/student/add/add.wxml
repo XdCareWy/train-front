@@ -7,11 +7,11 @@
     </view>
     <view class='section'>
       <text class='label'>手机号：</text>
-      <input name='name' placeholder='请输入手机号' />
+      <input name='phone' placeholder='请输入手机号' />
     </view>
     <view class='section'>
       <text class='label'>身份证号：</text>
-      <input name='name' placeholder='请输入身份证号' />
+      <input name='idCard' placeholder='请输入身份证号' />
     </view>
     <view class='section'>
       <text class='label'>身份选择：</text>
@@ -23,7 +23,7 @@
     </view>
     <view class='section'>
       <text class='label'>单位：</text>
-      <input name='name' placeholder='请输入单位地址' />
+      <input name='address' placeholder='请输入单位地址' />
     </view>
     <view class='btn-section'>
       <button formType='submit' size='mini' type='primary' class='btn-common' disabled='{{disabled}}'>提交</button>

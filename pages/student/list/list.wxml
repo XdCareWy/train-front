@@ -3,6 +3,6 @@
     <view class='section'>{{item.name}}</view>
   </block>
   <view class='btn-add'>
-    <button size='mini' type='primary'>新增学员</button>
+    <button size='mini' type='primary' bindtap='jumpAddStudent' >新增学员</button>
   </view>
 </view>

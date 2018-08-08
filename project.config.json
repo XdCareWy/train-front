@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -38,7 +38,7 @@
 				{
 					"id": 0,
 					"name": "a",
-					"pathName": "pages/enter/gradeEnter",
+					"pathName": "pages/person/personal",
 					"query": ""
 				}
 			]

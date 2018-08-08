@@ -5,7 +5,8 @@
     "pages/enter/score/score",
     "pages/logs/logs",
     "pages/student/add/add",
-    "pages/student/list/list"
+    "pages/student/list/list",
+    "pages/person/personal"
   ],
   "window": {
     "backgroundTextStyle": "light",

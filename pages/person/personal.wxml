@@ -1,0 +1,15 @@
+<view>
+  <button open-type='getUserInfo' bindgetuserinfo='toLogin'>
+    <view class="header">
+      <view class="photo">
+        <image src="{{defaultHeaderPng}}"></image>
+      </view>
+      <view class="p-info">
+        <view class="p-info-item">
+          <text class="txt">登录/注册</text>
+        </view>
+      </view>
+      <text class="not-login"></text>
+    </view>
+  </button>
+</view>

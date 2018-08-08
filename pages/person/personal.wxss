@@ -1,0 +1,6 @@
+/* pages/person/personal.wxss */
+.header {
+  height: 230rpx;
+  position: relative;
+  background-color: blue;
+}

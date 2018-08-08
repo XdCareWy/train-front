@@ -1,5 +1,5 @@
 //app.js
-// const config = require('./config.js');
+const config = require('./config.js');
 const enterType = require('./utils/constants.js')
 
 App({
@@ -21,7 +21,10 @@ App({
         //     js_code: res.code
         //   },
         //   success: res => {
-        //     console.log(res)
+        //     if (res.data.result) {
+        //       console.info('++++++++++++++++++++++++++++', res.data.result.openid)
+        //       wx.setStorageSync('sessionId', res.data.result.openid);
+        //     }
         //   }
         // })
       }
@@ -49,7 +52,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    // ...config,
+    ...config,
     ...enterType
   }
 })

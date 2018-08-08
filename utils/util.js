@@ -14,6 +14,40 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const request = params => {
+  const { url, success, fail, complete, method='get', data } = params;
+  if(url) {
+    wx.request({
+      url: url,
+      data: data,
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'sessionId': wx.getStorageSync('sessionId')
+      },
+      success: function(res) {
+        success && success(res);
+      },
+      fail: function(e) {
+        fail && fail(e);
+        console.log(e.errMsg);
+        wx.showToast({
+          title: '网络信号较差',
+          icon: 'loading',
+          duration: 3000
+        });
+      },
+      complete: function() {
+        complete && complete();
+      }
+    })
+  }else {
+    console.log('url is required!');
+    return false;
+  }
+
+};
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  request: request
 }
