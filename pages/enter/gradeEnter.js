@@ -10,41 +10,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    items: [{
-        id: 1,
-        name: '3',
-        value: '3人班',
-        checked: 'true'
-      },
-      {
-        id: 2,
-        name: '5',
-        value: '5人班'
-      },
-      {
-        id: 3,
-        name: '10',
-        value: '10人班'
-      }
-    ],
-    examineType: [{
-        id: 0,
-        name: 'BIM一级'
-      },
-      {
-        id: 1,
-        name: '二级建筑'
-      },
-      {
-        id: 2,
-        name: '二级结构'
-      },
-      {
-        id: 3,
-        name: '二级设备'
-      }
-    ],
-    exampleIndex: 0,
+    courseTypeMappings: {},
+    classTypeMappings: {},
+    products: [],
+    classesArr: [],
+    classCheckedKey: "",
+    courses: [],
+    coursesCheckedKey: 0,
     idArray: ['大学生', '其他'],
     idIndex: 0,
     msg: "",
@@ -58,78 +30,51 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.getCourseData();
+
     // id: 1-BIM等级考试；2-CAD等级考试；3-BIM技能应用
     let cardId = options.id;
     let examineType = [];
     switch (+cardId) {
       case BIM_LEVEL:
-        examineType = [{
-            id: 0,
-            name: 'BIM一级'
-          },
-          {
-            id: 1,
-            name: '二级建筑'
-          },
-          {
-            id: 2,
-            name: '二级结构'
-          },
-          {
-            id: 3,
-            name: '二级设备'
-          }
-        ];
+
         break;
       case CAD_LEVEL:
-        examineType = [{
-          id: 0,
-          name: 'CAD一级'
-        }];
+
         break;
       case BIM_APPLY:
-        examineType = [{
-            id: 0,
-            name: 'Revit基础与提高'
-          },
-          {
-            id: 1,
-            name: '案例实操'
-          },
-          {
-            id: 2,
-            name: 'Revit基础与提高+案例实操'
-          }
-        ];
+
         break;
       default:
-        examineType = [{
-            id: 0,
-            name: 'BIM一级'
-          },
-          {
-            id: 1,
-            name: '二级建筑'
-          },
-          {
-            id: 2,
-            name: '二级结构'
-          },
-          {
-            id: 3,
-            name: '二级设备'
-          }
-        ];;
+
     }
-    this.setData({
-      examineType: examineType,
-    })
   },
   bindPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    const val = e.detail.value;
+    console.log('picker发送选择改变，携带值为', val)
+    const {
+      courses,
+      courseTypeMappings
+    } = this.data;
+    const classesArr = courseTypeMappings[courses[val].key];
     this.setData({
-      exampleIndex: e.detail.value
+      coursesCheckedKey: val,
+      classesArr: classesArr,
+      classCheckedKey: classesArr[0].key
     })
+  },
+  radioChange: function(e) {
+    const val = e.detail.value;
+    const {
+      classesArr,
+      classTypeMappings
+    } = this.data;
+    console.log(val)
+    this.setData({
+      courses: classTypeMappings[val],
+      classCheckedKey: val,
+      coursesCheckedKey: 0
+    });
   },
   bindIdPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -203,5 +148,46 @@ Page({
     wx.navigateTo({
       url: '../student/list/list',
     })
-  }
+  },
+  getCourseData: function() {
+    wx.request({
+      url: 'https://easy-mock.com/mock/5b698e437059a355fd430849/train/course/classify',
+      method: 'GET',
+      success: ({
+        data,
+        statusCode
+      }) => {
+        if (statusCode === 200) {
+          const {
+            code,
+            data: list
+          } = data;
+          if (code === '0') {
+            console.log(list);
+            const {
+              courseTypeMappings,
+              classTypeMappings,
+              products
+            } = list;
+            const classesArr = courseTypeMappings[products[0].courseType];
+            const courses = classTypeMappings[products[0].classType];
+            console.log(classesArr);
+            console.log(courses)
+            this.setData({
+              courseTypeMappings: courseTypeMappings,
+              classTypeMappings: classTypeMappings,
+              classesArr: classesArr,
+              courses: courses,
+              classCheckedKey: classesArr[0].key,
+              coursesCheckedKey: 0
+            });
+          }
+        }
+      },
+      fail: function(e) {
+        console.log(e)
+      }
+    })
+  },
+
 })

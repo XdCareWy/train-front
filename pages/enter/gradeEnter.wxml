@@ -14,17 +14,17 @@
     </view>
     <view class='section'>
       <text class='label'>考试类别：</text>
-      <picker name='examineType' bindchange="bindPickerChange" range-key="name" value="{{exampleIndex}}" range="{{examineType}}">
+      <picker name='examineType' bindchange="bindPickerChange" range-key="label" value="{{coursesCheckedKey}}" range="{{courses}}">
         <view class="picker">
-          {{examineType[exampleIndex].name}}
+          {{courses[coursesCheckedKey].label}}
         </view>
       </picker>
     </view>
     <view class='section'>
       <text class='label'>班级人数：</text>
       <radio-group class="radio-group" bindchange="radioChange">
-        <label class="radio" wx:key="{{item.id}}" wx:for="{{items}}">
-          <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+        <label class="radio" wx:key="{{item.key}}" wx:for="{{classesArr}}">
+          <radio value="{{item.key}}" checked='{{item.key===classCheckedKey}}' />{{item.label}}
         </label>
       </radio-group>
     </view>

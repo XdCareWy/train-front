@@ -38,7 +38,7 @@
 				{
 					"id": 0,
 					"name": "a",
-					"pathName": "pages/order/detail/detail",
+					"pathName": "pages/enter/gradeEnter",
 					"query": ""
 				}
 			]
