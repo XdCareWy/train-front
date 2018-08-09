@@ -1,11 +1,11 @@
-// pages/person/personal.js
+// pages/order/detail/detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    defaultHeaderPng: "../../assets/my.png"
+  
   },
 
   /**
@@ -42,14 +42,25 @@ Page({
   onUnload: function () {
   
   },
-  handleStudentTap: function() {
-    wx.navigateTo({
-      url: '../student/list/list',
-    })
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+  
   },
-  handleOrderTap: function() {
-    wx.navigateTo({
-      url: '../order/list/list',
-    })
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+  
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+  
   }
 })

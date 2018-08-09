@@ -1,0 +1,26 @@
+<view class='section'>
+  <view class='item'>
+    <text>订单编号：</text>
+    <text>1232353465346798677456</text>
+  </view>
+  <view class='item'>
+    <text>订单状态：</text>
+    <text>已支付</text>
+  </view>
+  <view class='item'>
+    <text>订单金额：</text>
+    <text>1111</text>
+  </view>
+  <view class='item'>
+    <text>下单时间：</text>
+    <text>2018-05-05 16:00:00</text>
+  </view>
+  <view class='item'>
+    <text>培训课程：</text>
+    <text>全国CAD等级考试培训报名</text>
+  </view>
+  <view class='item'>
+    <text>上课学员：</text>
+    <text>刘柏</text>
+  </view>
+</view>

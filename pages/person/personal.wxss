@@ -1,6 +1,43 @@
 /* pages/person/personal.wxss */
+.btn {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
 .header {
-  height: 230rpx;
-  position: relative;
+  height: 280rpx;
   background-color: blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.header .photo {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.header .photo image {
+  width: 100%;
+  height: 100%;
+}
+
+.item {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx 10rpx 30rpx 20rpx;
+  border-bottom: 1rpx solid #dfdfdf;
+}
+.content:active {
+  background-color: red;
+}
+
+.item .right {
+  padding-right:25rpx;
+  display: flex;
+}
+
+.item .right .right-icon {
+  color: #dfdfdf;
 }

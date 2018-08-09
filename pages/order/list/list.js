@@ -1,11 +1,11 @@
-// pages/person/personal.js
+// pages/order/list/list.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    defaultHeaderPng: "../../assets/my.png"
+  
   },
 
   /**
@@ -42,14 +42,9 @@ Page({
   onUnload: function () {
   
   },
-  handleStudentTap: function() {
+  handleDetail: function() {
     wx.navigateTo({
-      url: '../student/list/list',
-    })
-  },
-  handleOrderTap: function() {
-    wx.navigateTo({
-      url: '../order/list/list',
+      url: '../detail/detail',
     })
   }
 })

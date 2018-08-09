@@ -1,15 +1,31 @@
 <view>
-  <button open-type='getUserInfo' bindgetuserinfo='toLogin'>
+  <button class='btn' open-type='getUserInfo' bindgetuserinfo='toLogin'>
     <view class="header">
       <view class="photo">
         <image src="{{defaultHeaderPng}}"></image>
       </view>
       <view class="p-info">
         <view class="p-info-item">
-          <text class="txt">登录/注册</text>
+          <text class="txt">登录</text>
         </view>
       </view>
       <text class="not-login"></text>
     </view>
   </button>
+  <view class='content' bindtap='handleStudentTap'>
+    <view class='item'>
+      <view class='left'>我的学员</view>
+      <view class='right'>
+        <view class='right-icon'>></view>
+      </view>
+    </view>
+  </view>
+  <view class='content' bindtap='handleOrderTap'>
+    <view class='item'>
+      <view class='left'>我的订单</view>
+      <view class='right'>
+        <view class='right-icon'>></view>
+      </view>
+    </view>
+  </view>
 </view>

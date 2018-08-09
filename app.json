@@ -6,7 +6,9 @@
     "pages/logs/logs",
     "pages/student/add/add",
     "pages/student/list/list",
-    "pages/person/personal"
+    "pages/person/personal",
+    "pages/order/list/list",
+    "pages/order/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -23,8 +25,8 @@
         "selectedIconPath": "assets/home_active.png"
       },
       {
-        "pagePath": "pages/logs/logs",
-        "text": "日志",
+        "pagePath": "pages/person/personal",
+        "text": "我的",
         "iconPath": "assets/service_light.png",
         "selectedIconPath": "assets/service_light_active.png"
       }

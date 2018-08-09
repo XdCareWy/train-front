@@ -1,0 +1,18 @@
+<view>
+  <view class='content' bindtap='handleDetail'>
+    <view class='item'>
+      <view class='left'>全国CAD等级考试培训报名</view>
+      <view class='right'>
+        <view class='right-icon'>￥1111</view>
+      </view>
+    </view>
+  </view>
+  <view class='content' bindtap='handleDetail'>
+    <view class='item'>
+      <view class='left'>全国BIM等级考试培训报名</view>
+      <view class='right'>
+        <view class='right-icon'>￥1564</view>
+      </view>
+    </view>
+  </view>
+</view>

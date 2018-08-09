@@ -1,0 +1,16 @@
+/* pages/order/list/list.wxss */
+.item {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx 10rpx 30rpx 20rpx;
+  border-bottom: 1rpx solid #dfdfdf;
+}
+.content:active {
+  background-color: red;
+}
+
+.item .right {
+  padding-right:25rpx;
+  display: flex;
+}

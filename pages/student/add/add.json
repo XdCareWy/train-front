@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "新增学员"
+  "navigationBarTitleText": "新增学员",
+  "navigationBarBackgroundColor": "#000000",
+  "navigationBarTextStyle": "white"
 }

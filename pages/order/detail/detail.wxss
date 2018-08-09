@@ -1,0 +1,7 @@
+/* pages/order/detail/detail.wxss */
+.section {
+  margin: 5px 10px;
+}
+.item {
+  margin: 5px 0;
+}
