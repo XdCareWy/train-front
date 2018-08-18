@@ -1,6 +1,16 @@
 <view>
   <button class='btn' open-type='getUserInfo' bindgetuserinfo='toLogin'>
-    <view class="header">
+    <view class="header" wx:if="{{hasUserInfo && canIUse}}">
+      <view class="photo">
+        <image src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <view class="p-info">
+        <view class="p-info-item">
+          <text class="txt">{{userInfo.nickName}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="header" wx:else>
       <view class="photo">
         <image src="{{defaultHeaderPng}}"></image>
       </view>

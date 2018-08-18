@@ -10,32 +10,74 @@ const {
 
 Page({
   data: {
-    courses: []
+    courses: [],
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   onLoad: function() {
-    console.log(BASE_URL)
     this.getCourseData()
+  },
+  bindGetUserInfo: function(e) {
+    console.log(e.detail.userInfo)
   },
   onShow: function() {
 
   },
-  handleEnter: function(event) {
-    const cardId = event.currentTarget.id;
-    console.log(cardId)
-    let navigateUrl = "";
-    switch (cardId) {
-      case BIM_LEVEL:
-      case CAD_LEVEL:
-      case BIM_APPLY:
-        navigateUrl = '../enter/gradeEnter?id=' + cardId;
-        break;
-    }
-    if (navigateUrl) {
-      wx.navigateTo({
-        url: navigateUrl,
-      })
-    }
+  /**
+   * 点击某个课程事件
+   */
+  handleEnter: event => {
+    const userInfo = event.detail.userInfo;
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res)
+        wx.request({
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          url: BASE_URL + "/login",
+          method: 'POST',
+          data: {
+            code: res.code,
+            ...userInfo
+          },
+          success: res => {
+            const {
+              code,
+              data,
+              msg
+            } = res.data;
+            if (code === '0') {
+              console.info('++++++++++++++++++++++++++++', data.result.openid)
+              wx.setStorageSync('sessionId', data.result.openid);
+              const cardId = event.currentTarget.id;
+              let navigateUrl = "";
+              switch (cardId) {
+                case BIM_LEVEL:
+                case CAD_LEVEL:
+                case BIM_APPLY:
+                  navigateUrl = '../enter/gradeEnter?id=' + cardId;
+                  break;
+              }
+              if (navigateUrl) {
+                wx.navigateTo({
+                  url: navigateUrl,
+                })
+              }
+            } else {
+              wx.showToast({
+                title: msg,
+                icon: 'loading'
+              })
+            }
+          }
+        })
+      }
+    })
   },
+  /**
+   * 获取课程分类信息
+   */
   getCourseData: function() {
     wx.request({
       url: BASE_URL + "/product/course/classify",

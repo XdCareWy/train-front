@@ -216,7 +216,6 @@ Page({
             data: list
           } = data;
           if (code === '0') {
-            console.log(list);
             const {
               courseTypeMappings,
               classTypeMappings,
@@ -224,8 +223,6 @@ Page({
             } = list;
             const classesArr = courseTypeMappings[products[0].courseType];
             const courses = classTypeMappings[products[0].classType];
-            console.log(classesArr);
-            console.log(courses)
             this.setData({
               products: products,
               courseTypeMappings: courseTypeMappings,

@@ -10,10 +10,10 @@
   </view>
   <view class="card-group">
     <block wx:for="{{courses}}" wx:key="key">
-      <view class="card-item" id='{{item.key}}' bindtap="handleEnter">
-        <view class='card-img'>
+      <view class="card-item">
+        <button class='card-img' id='{{item.key}}' open-type='getUserInfo' bindgetuserinfo="handleEnter">
           <image src='../../assets/icon-{{item.img}}.png'></image>
-        </view>
+        </button>
         <text class="card-text">{{item.label}}</text>
       </view>
     </block>
