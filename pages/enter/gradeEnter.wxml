@@ -9,7 +9,7 @@
           <view wx:if="{{!user.id}}" class='right-icon'>请选择报名学员></view>
           <view wx:else>{{user.name}}</view>
         </view>
-        <input class='hidden' type='text' name='name' value='{{name}}' />
+        <input class='hidden' type='text' name='studentId' value='{{name}}' />
       </view>
     </view>
     <view class='section'>
@@ -24,18 +24,25 @@
       <text class='label'>班级人数：</text>
       <radio-group class="radio-group" bindchange="radioChange">
         <label class="radio" wx:key="{{item.key}}" wx:for="{{classesArr}}">
-          <radio value="{{item.key}}" checked='{{item.key===classCheckedKey}}' />{{item.label}}
+          <radio checked="{{item.key===classCheckedKey}}" value="{{item.key}}" checked='{{item.key===classCheckedKey}}' />{{item.label}}
         </label>
       </radio-group>
     </view>
-    <view class='section'>
+    <!-- <view class='section'>
       <text class='label'>身份选择：</text>
       <picker name='idType' bindchange="bindIdPickerChange" value="{{idIndex}}" range="{{idArray}}">
         <view class="picker">
           {{idArray[idIndex]}}
         </view>
       </picker>
+    </view> -->
+    <view class='result'>
+      <view>{{result.name}}</view>
+      <view class='tips'>需支付</view>
+      <view class='money'>￥{{result.feeDesc}}元</view>
     </view>
+
+
     <view class='btn-section'>
       <button formType='submit' size='mini' type='primary' class='btn-common' disabled='{{disabled}}'>提交</button>
     </view>

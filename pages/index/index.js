@@ -1,36 +1,33 @@
 //index.js
-const { BIM_LEVEL, CAD_LEVEL, BIM_APPLY, MY_SCORE, GROUP, MY_SUBJECT } = getApp().globalData.enterType;
-const {BASE_URL} = getApp().globalData.config;
+const {
+  BIM_LEVEL,
+  CAD_LEVEL,
+  BIM_APPLY
+} = getApp().globalData.enterType;
+const {
+  BASE_URL
+} = getApp().globalData.config;
 
 Page({
   data: {
-    course: []
+    courses: []
   },
-  onLoad: function () {
+  onLoad: function() {
     console.log(BASE_URL)
     this.getCourseData()
   },
-  onShow: function () {
+  onShow: function() {
 
   },
-  handleEnter: function (event) {
+  handleEnter: function(event) {
     const cardId = event.currentTarget.id;
+    console.log(cardId)
     let navigateUrl = "";
-    switch (+cardId) {
+    switch (cardId) {
       case BIM_LEVEL:
       case CAD_LEVEL:
       case BIM_APPLY:
         navigateUrl = '../enter/gradeEnter?id=' + cardId;
-        break;
-      case MY_SCORE:
-        navigateUrl = '../enter/score/score';
-        break;
-      case GROUP:
-      case MY_SUBJECT:
-        wx.showToast({
-          title: '暂未开放',
-          icon: "loading"
-        })
         break;
     }
     if (navigateUrl) {
@@ -39,11 +36,26 @@ Page({
       })
     }
   },
-  getCourseData: function () {
+  getCourseData: function() {
     wx.request({
-      url: BASE_URL + "/course/classify",
-      success: (req) => {
-        console.log(req)
+      url: BASE_URL + "/product/course/classify",
+      success: ({
+        data,
+        statusCode
+      }) => {
+        if (statusCode === 200) {
+          const {
+            code,
+            data: {
+              courseClassifyList
+            }
+          } = data;
+          if (code === '0') {
+            this.setData({
+              courses: courseClassifyList
+            });
+          }
+        }
       }
     })
   }

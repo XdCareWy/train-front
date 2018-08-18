@@ -12,14 +12,16 @@ page {
   padding: 30rpx 10rpx 30rpx 35rpx;
   border-bottom: 1rpx solid #dfdfdf;
 }
+
 .content:active {
   background-color: #dfdfdf;
 }
 
 .item .right {
-  padding-right:25rpx;
+  padding-right: 25rpx;
   display: flex;
 }
+
 .item .right .right-title {
   padding-right: 20rpx;
   width: 145rpx;
@@ -28,9 +30,11 @@ page {
   text-overflow: ellipsis;
   text-align: right;
 }
+
 .item .right .right-icon {
   color: #dfdfdf;
 }
+
 .hidden {
   visibility: hidden;
   display: none;
@@ -49,34 +53,58 @@ page {
   width: 200rpx;
   text-align: right;
 }
+
 .section input {
   height: 115rpx;
   line-height: 115rpx;
   width: 530rpx;
 }
+
 .btn-section {
   display: flex;
   justify-content: center;
   margin-top: 100rpx;
 }
+
 .btn-common {
   width: 90%;
   display: inline-block;
 }
+
 .info {
   padding: 15rpx;
   font-size: 35rpx;
 }
+
 .point-color {
   color: red;
 }
+
 .msg {
-  background-color: #e64340; 
+  background-color: #e64340;
   font-size: 34rpx;
-  color: #ffffff;
+  color: #fff;
   line-height: 53rpx;
   text-align: center;
   position: absolute;
   top: 0;
   width: 100%;
+}
+
+.result {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  height: 300rpx;
+  line-height: 65rpx;
+}
+
+.tips {
+  color: #a6a6a6;
+}
+
+.money {
+  color: red;
 }

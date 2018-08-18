@@ -1,5 +1,5 @@
 const config = {
-  devHost: "https://easy-mock.com/mock/5b698e437059a355fd430849/train",
+  devHost: "http://192.168.31.139:8090",
   host: "https://zxdyue.top",
   imgPath: "http://p3trypz19.bkt.clouddn.com/"
 };

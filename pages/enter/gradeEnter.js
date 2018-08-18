@@ -1,24 +1,30 @@
 // pages/enter/gradeEnter.js
 const {
   BIM_LEVEL,
-  CAD_LEVEL,
-  BIM_APPLY
 } = getApp().globalData.enterType;
+const {
+  BASE_URL
+} = getApp().globalData.config;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    courseTypeMappings: {},
-    classTypeMappings: {},
-    products: [],
-    classesArr: [],
-    classCheckedKey: "",
-    courses: [],
-    coursesCheckedKey: 0,
-    idArray: ['大学生', '其他'],
-    idIndex: 0,
+    courseTypeMappings: {}, // 报考类别Map
+    classTypeMappings: {}, // 班级人数Map
+    products: [], // 所有的课程
+    classesArr: [], // 班级人数（做渲染）
+    classCheckedKey: "", // 班级人数，默认的key
+    courses: [], // 考试类别（做渲染）
+    coursesCheckedKey: 0, // 考试类别，默认可以
+    // idArray: ['大学生', '其他'],
+    // idIndex: 0,
+    result: {
+      code: '',
+      name: '',
+      feeDesc: '',
+    },
     msg: "",
     user: {
       id: 1,
@@ -30,25 +36,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getCourseData();
-
-    // id: 1-BIM等级考试；2-CAD等级考试；3-BIM技能应用
-    let cardId = options.id;
-    let examineType = [];
-    switch (+cardId) {
-      case BIM_LEVEL:
-
-        break;
-      case CAD_LEVEL:
-
-        break;
-      case BIM_APPLY:
-
-        break;
-      default:
-
-    }
+    // courseClassify: 1-BIM等级考试；2-CAD等级考试；3-BIM技能应用
+    let courseClassify = options.id || BIM_LEVEL;
+    this.getCourseData(courseClassify);
   },
+  /**
+   * 考试类别Tap
+   */
   bindPickerChange: function(e) {
     const val = e.detail.value;
     console.log('picker发送选择改变，携带值为', val)
@@ -57,31 +51,110 @@ Page({
       courseTypeMappings
     } = this.data;
     const classesArr = courseTypeMappings[courses[val].key];
+    const key = this.getNewClassKey(val)
     this.setData({
       coursesCheckedKey: val,
       classesArr: classesArr,
-      classCheckedKey: classesArr[0].key
+      classCheckedKey: key,
+      result: this.getProduct(courses[+val].key, key)
     })
   },
+  /**
+   * 班级人数Tap
+   */
   radioChange: function(e) {
     const val = e.detail.value;
     const {
       classesArr,
-      classTypeMappings
+      classTypeMappings,
+      products,
+      courses,
+      coursesCheckedKey,
     } = this.data;
-    console.log(val)
+
+    const key = this.getNewCourseKey(val);
+    const newCourses = classTypeMappings[val];
     this.setData({
-      courses: classTypeMappings[val],
+      courses: newCourses,
       classCheckedKey: val,
-      coursesCheckedKey: 0
+      coursesCheckedKey: key,
+      result: this.getProduct(newCourses[key].key, val)
     });
   },
-  bindIdPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      idIndex: e.detail.value
-    })
+  // bindIdPickerChange: function(e) {
+  //   console.log('picker发送选择改变，携带值为', e.detail.value)
+  //   this.setData({
+  //     idIndex: e.detail.value
+  //   })
+  // },
+
+  /**
+   * 获取最新的考试类别key
+   * @param classType 班级人数
+   */
+  getNewCourseKey: function(classType) {
+    const {
+      classTypeMappings,
+      courses,
+      coursesCheckedKey,
+    } = this.data;
+
+    const newCourses = classTypeMappings[classType];
+    const oldKey = courses[coursesCheckedKey].key;
+    const flag = newCourses.some(item => item.key === oldKey);
+    let key = 0;
+    newCourses.forEach((item, index) => {
+      if (item.key === oldKey) {
+        key = index;
+      }
+    });
+    return key;
   },
+
+  /**
+   * 获取最新的班级人数key
+   */
+  getNewClassKey: function(courseType) {
+    const {
+      courseTypeMappings,
+      classesArr,
+      classCheckedKey,
+      courses,
+    } = this.data;
+    const newClassArr = courseTypeMappings[courses[courseType].key];
+    console.log(newClassArr)
+    console.log(classCheckedKey)
+    const flag = newClassArr.some(item => item.key === classCheckedKey);
+    return flag ? classCheckedKey : newClassArr[0].key;
+  },
+
+  /**
+   * 根据考试类别和班级人数确定课程
+   * @param ex: 考试类别
+   * @param num: 班级人数
+   */
+  getProduct: function(ex, num) {
+    const {
+      products
+    } = this.data;
+    const res = products.filter(item => {
+      const {
+        classType,
+        courseType
+      } = item;
+      if (ex === courseType && num === classType) {
+        return item;
+      }
+    });
+    return res[0];
+  },
+
+
+  /**
+   * 错误消息统一处理函数
+   * @param filed: 校验字段
+   * @param msg: 提示消息
+   */
   showErrorMsg: function(filed, msg) {
     if (filed === "" || filed.length === 0) {
       this.setData({
@@ -100,23 +173,13 @@ Page({
     return true;
   },
   formSubmit: function(e) {
-    const requireFiled = ["name", "phone", "idCard", "idType", "address", "exampleType"];
+    const requireFiled = ["name"];
     const requireValue = {
       name: "姓名不能为空",
-      phone: "手机号不能为空",
-      idCard: "身份证号码不能为空",
-      idType: "选择身份",
-      address: "请填写单位地址",
-      exampleType: "选择考试类别"
     };
     const data = e.detail.value;
     const {
-      name,
-      phone,
-      idCard,
-      idType,
-      address,
-      exampleType
+      name
     } = data;
     for (let k in data) {
       let r = requireFiled.includes(k) && this.showErrorMsg(data[k], requireValue[k]);
@@ -130,29 +193,19 @@ Page({
       title: '表单信息',
       content: JSON.stringify(data),
     })
-    // todo: 发送请求
-    // wx.request({
-    //   url: '',
-    //   method: 'POST',
-    //   data: data,
-    //   success: function ({ data, statusCode}) {
-    //     // todo: 处理数据
-    //     console.log(statusCode, data)
-    //   },
-    //   fail: function(res) {
-    //     // todo: 处理错误
-    //   }
-    // })
   },
   handleStudentTap: function() {
     wx.navigateTo({
       url: '../student/list/list',
     })
   },
-  getCourseData: function() {
+  getCourseData: function(courseClassify) {
     wx.request({
-      url: 'https://easy-mock.com/mock/5b698e437059a355fd430849/train/course/classify',
+      url: `${BASE_URL}/product/course/classify/detail`,
       method: 'GET',
+      data: {
+        courseClassify: courseClassify
+      },
       success: ({
         data,
         statusCode
@@ -174,12 +227,14 @@ Page({
             console.log(classesArr);
             console.log(courses)
             this.setData({
+              products: products,
               courseTypeMappings: courseTypeMappings,
               classTypeMappings: classTypeMappings,
               classesArr: classesArr,
               courses: courses,
               classCheckedKey: classesArr[0].key,
-              coursesCheckedKey: 0
+              coursesCheckedKey: 0,
+              result: products[0]
             });
           }
         }

@@ -9,45 +9,13 @@
     <span class="line line-right" />
   </view>
   <view class="card-group">
-    <view class="card-item" id='1' bindtap="handleEnter">
-      <view class='card-img'>
-        <image src='../../assets/icon-1.png'></image>
+    <block wx:for="{{courses}}" wx:key="key">
+      <view class="card-item" id='{{item.key}}' bindtap="handleEnter">
+        <view class='card-img'>
+          <image src='../../assets/icon-{{item.img}}.png'></image>
+        </view>
+        <text class="card-text">{{item.label}}</text>
       </view>
-      <text class="card-text">BIM等级考试</text>
-    </view>
-    <view class="card-item" id='2' bindtap="handleEnter">
-      <view class='card-img'>
-        <image src='../../assets/icon-2.png'></image>
-      </view>
-      <text class="card-text">CAD等级考试</text>
-    </view>
-  </view>
-  <view class="card-group">
-    <view class="card-item" id='3' bindtap="handleEnter">
-      <view class='card-img'>
-        <image src='../../assets/icon-3.png'></image>
-      </view>
-      <text class="card-text">BIM技能应用</text>
-    </view>
-    <view class="card-item" id='4' bindtap="handleEnter">
-      <view class='card-img'>
-        <image src='../../assets/icon-4.png'></image>
-      </view>
-      <text class="card-text">组团报名</text>
-    </view>
-  </view>
-  <view class="card-group">
-    <view class="card-item" id='5' bindtap="handleEnter">
-      <view class='card-img'>
-        <image src='../../assets/icon-1.png'></image>
-      </view>
-      <text class="card-text">成绩查询</text>
-    </view>
-    <view class="card-item" id='6' bindtap="handleEnter">
-      <view class='card-img'>
-        <image src='../../assets/icon-2.png'></image>
-      </view>
-      <text class="card-text">我的课程</text>
-    </view>
+    </block>
   </view>
 </view>
