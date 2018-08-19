@@ -1,26 +1,24 @@
 // pages/student/list/list.js
-import request from '../../../utils/util.js';
+import {
+  request
+} from '../../../utils/util.js';
+const {
+  BASE_URL
+} = getApp().globalData.config;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [{
-      id: 1,
-      name: "张旭东"
-    }, {
-      id: 2,
-      name: "刘柏"
-    }]
+    students: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
-    console.log('onLoad')
+    
   },
 
   /**
@@ -35,7 +33,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    console.log('show')
+    this.getStudents();
+    console.log('student show')
   },
 
   /**
@@ -43,7 +42,7 @@ Page({
    */
   onHide: function() {
 
-    console.log('hide')
+    console.log('student hide')
   },
 
   /**
@@ -51,6 +50,16 @@ Page({
    */
   onUnload: function() {
 
+  },
+  /** 选择学员事件 */
+  handleSelect: function(e) {
+    const studentId = e.target.id;
+    const selectStudent = this.data.students.filter(item => +item.id === +studentId);
+    console.log(selectStudent[0])
+    const currPage = getCurrentPages();
+    const prevPage = currPage[currPage.length - 2];
+    prevPage.setData({user: selectStudent[0]});
+    wx.navigateBack();
   },
   /**
    * 跳转到新增学员页面
@@ -65,7 +74,21 @@ Page({
    */
   getStudents: function() {
     request({
-      url: '',
+      url: BASE_URL + '/student/user/get',
+      success: res => {
+        const {
+          code,
+          data,
+          msg
+        } = res.data;
+        if (code === '0') {
+          this.setData({
+            students: data.studentList
+          });
+        } else {
+          console.log(msg);
+        }
+      }
     })
   }
 })

@@ -9,7 +9,7 @@
           <view wx:if="{{!user.id}}" class='right-icon'>请选择报名学员></view>
           <view wx:else>{{user.name}}</view>
         </view>
-        <input class='hidden' type='text' name='studentId' value='{{name}}' />
+        <input class='hidden' type='text' name='studentId' value='{{user.id}}' />
       </view>
     </view>
     <view class='section'>

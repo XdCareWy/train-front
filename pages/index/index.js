@@ -48,8 +48,8 @@ Page({
               msg
             } = res.data;
             if (code === '0') {
-              console.info('++++++++++++++++++++++++++++', data.result.openid)
-              wx.setStorageSync('sessionId', data.result.openid);
+              console.info('++++++++++++++++++++++++++++', data.sessionId)
+              wx.setStorageSync('sessionId', data.sessionId);
               const cardId = event.currentTarget.id;
               let navigateUrl = "";
               switch (cardId) {

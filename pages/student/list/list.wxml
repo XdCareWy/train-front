@@ -1,6 +1,6 @@
 <view>
-  <block wx:for="{{list}}" wx:for-item="item" wx:key="id">
-    <view class='section'>{{item.name}}</view>
+  <block wx:for="{{students}}" wx:for-item="item" wx:key="id">
+    <view class='section' id='{{item.id}}' bindtap='handleSelect'>{{item.name}}</view>
   </block>
   <view class='btn-add'>
     <button size='mini' type='primary' bindtap='jumpAddStudent' >新增学员</button>

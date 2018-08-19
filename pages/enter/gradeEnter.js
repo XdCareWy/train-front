@@ -26,10 +26,7 @@ Page({
       feeDesc: '',
     },
     msg: "",
-    user: {
-      id: 1,
-      name: "张旭东"
-    },
+    user: {},
   },
 
   /**
@@ -39,6 +36,13 @@ Page({
     // courseClassify: 1-BIM等级考试；2-CAD等级考试；3-BIM技能应用
     let courseClassify = options.id || BIM_LEVEL;
     this.getCourseData(courseClassify);
+    this.setData({
+      courseClassify: courseClassify,
+    })
+  },
+
+  onShow: function() {
+    console.log(this.data.user)
   },
   /**
    * 考试类别Tap
@@ -173,20 +177,20 @@ Page({
     return true;
   },
   formSubmit: function(e) {
-    const requireFiled = ["name"];
-    const requireValue = {
-      name: "姓名不能为空",
-    };
+    // const requireFiled = ["name"];
+    // const requireValue = {
+    //   name: "姓名不能为空",
+    // };
     const data = e.detail.value;
-    const {
-      name
-    } = data;
-    for (let k in data) {
-      let r = requireFiled.includes(k) && this.showErrorMsg(data[k], requireValue[k]);
-      if (!r) {
-        return;
-      }
-    }
+    // const {
+    //   name
+    // } = data;
+    // for (let k in data) {
+    //   let r = requireFiled.includes(k) && this.showErrorMsg(data[k], requireValue[k]);
+    //   if (!r) {
+    //     return;
+    //   }
+    // }
     console.log(data);
 
     wx.showModal({
@@ -194,9 +198,13 @@ Page({
       content: JSON.stringify(data),
     })
   },
+  /** 选择学员 */
   handleStudentTap: function() {
+    const {
+      courseClassify
+    } = this.data;
     wx.navigateTo({
-      url: '../student/list/list',
+      url: '../student/list/list?id=' + courseClassify,
     })
   },
   getCourseData: function(courseClassify) {

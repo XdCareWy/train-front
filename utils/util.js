@@ -15,10 +15,11 @@ const formatNumber = n => {
 }
 
 const request = params => {
-  const { url, success, fail, complete, method='get', data } = params;
+  const { url, success, fail, complete, method='GET', data } = params;
   if(url) {
     wx.request({
       url: url,
+      method: method,
       data: data,
       header: {
         'Content-Type': 'application/x-www-form-urlencoded',
