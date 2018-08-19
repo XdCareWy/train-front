@@ -53,12 +53,12 @@ Page({
   },
   handleStudentTap: function() {
     wx.navigateTo({
-      url: '../student/list/list',
+      url: '../student/list/list?flag=myInfo',
     })
   },
   handleOrderTap: function() {
     wx.navigateTo({
-      url: '../order/list/list',
+      url: '../order/list/list?flag=myInfo',
     })
   },
   toLogin: function(e) {

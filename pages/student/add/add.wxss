@@ -16,34 +16,45 @@ page {
   width: 200rpx;
   text-align: right;
 }
+
 .section input {
   height: 115rpx;
   line-height: 115rpx;
   width: 530rpx;
 }
+
 .btn-section {
   display: flex;
   justify-content: center;
   margin-top: 100rpx;
 }
+
 .btn-common {
   width: 90%;
   display: inline-block;
 }
+
 .info {
   padding: 15rpx;
   font-size: 35rpx;
 }
+
 .point-color {
   color: red;
 }
+
 .msg {
-  background-color: #e64340; 
+  background-color: #e64340;
   font-size: 34rpx;
-  color: #ffffff;
+  color: #fff;
   line-height: 53rpx;
   text-align: center;
   position: absolute;
   top: 0;
   width: 100%;
+}
+
+.hidden {
+  visibility: hidden;
+  display: none;
 }

@@ -1,5 +1,7 @@
 // pages/student/add/add.js
-import { request} from '../../../utils/util.js';
+import {
+  request
+} from '../../../utils/util.js';
 const {
   BASE_URL
 } = getApp().globalData.config;
@@ -12,18 +14,38 @@ Page({
   data: {
     idArray: ['大学生', '其他'],
     idIndex: 0,
+    student: {
+      name: '',
+      phone: '',
+      idNum: '',
+      company: ''
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(wx.getStorageSync('sessionId'))
+    if ('params' in options) {
+      const {
+        isEdit,
+        student
+      } = JSON.parse(options.params);
+      isEdit && wx.setNavigationBarTitle({
+        title: '编辑学员',
+      });
+      console.log(this.data.idArray.indexOf(student.identity))
+      this.setData({
+        student: student,
+        idIndex: this.data.idArray.indexOf(student.identity)
+      })
+    }
   },
 
   formSubmit: function(e) {
     console.log(e.detail.value)
     const {
+      id,
       name,
       phone,
       idNum,
@@ -38,8 +60,13 @@ Page({
       identity: this.data.idArray[identity],
       company: company
     };
+    let url = '/student/create';
+    if (id && id !== '') {
+      url = '/student/edit';
+      data.id = id;
+    }
     request({
-      url: BASE_URL + '/student/create',
+      url: BASE_URL + url,
       data: data,
       method: 'POST',
       success: function(res) {

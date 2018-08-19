@@ -1,5 +1,8 @@
 {
   "navigationBarTitleText": "选择学员",
   "navigationBarBackgroundColor": "#000000",
-  "navigationBarTextStyle": "white"
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "my-component": "/components/ModalLogin"
+  }
 }

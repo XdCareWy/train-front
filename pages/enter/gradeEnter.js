@@ -36,9 +36,6 @@ Page({
     // courseClassify: 1-BIM等级考试；2-CAD等级考试；3-BIM技能应用
     let courseClassify = options.id || BIM_LEVEL;
     this.getCourseData(courseClassify);
-    this.setData({
-      courseClassify: courseClassify,
-    })
   },
 
   onShow: function() {
@@ -200,11 +197,8 @@ Page({
   },
   /** 选择学员 */
   handleStudentTap: function() {
-    const {
-      courseClassify
-    } = this.data;
     wx.navigateTo({
-      url: '../student/list/list?id=' + courseClassify,
+      url: '../student/list/list',
     })
   },
   getCourseData: function(courseClassify) {
@@ -249,5 +243,4 @@ Page({
       }
     })
   },
-
 })

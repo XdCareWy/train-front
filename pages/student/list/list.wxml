@@ -3,6 +3,8 @@
     <view class='section' id='{{item.id}}' bindtap='handleSelect'>{{item.name}}</view>
   </block>
   <view class='btn-add'>
-    <button size='mini' type='primary' bindtap='jumpAddStudent' >新增学员</button>
+    <button size='mini' type='primary' bindtap='jumpAddStudent'>新增学员</button>
   </view>
+  <my-component visible="{{visible}}" bindok="modalOk" bindcancel="modalCancel">
+  </my-component>
 </view>
