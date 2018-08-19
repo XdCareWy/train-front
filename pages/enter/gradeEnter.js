@@ -41,6 +41,12 @@ Page({
   onShow: function() {
     console.log(this.data.user)
   },
+
+  /** 获取手机号 */
+  // getPhone: function(e) {
+  //   console.log(e)
+  // },
+
   /**
    * 考试类别Tap
    */

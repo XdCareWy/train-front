@@ -12,6 +12,17 @@
         <input class='hidden' type='text' name='studentId' value='{{user.id}}' />
       </view>
     </view>
+    <!-- <view class='content'>
+      <view class='item'>
+        <view class='left'>手机号：</view>
+        <view class='right'>
+          <text class='right-title'></text>
+          <button open-type='getPhoneNumber' bindgetphonenumber='getPhone' wx:if="{{!user.id}}" class='right-icon'>获取手机号></button>
+          <view wx:else>{{user.name}}</view>
+        </view>
+        <input class='hidden' type='text' name='studentId' value='{{user.id}}' />
+      </view>
+    </view> -->
     <view class='section'>
       <text class='label'>考试类别：</text>
       <picker name='examineType' bindchange="bindPickerChange" range-key="label" value="{{coursesCheckedKey}}" range="{{courses}}">
