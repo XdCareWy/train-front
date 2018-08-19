@@ -76,6 +76,11 @@ Page({
       visible: false
     });
     const userInfo = e.detail.us;
+    this.login(userInfo);
+  },
+
+  /** 登陆 */
+  login: function(us) {
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -87,7 +92,7 @@ Page({
           method: 'POST',
           data: {
             code: res.code,
-            ...userInfo
+            ...us
           },
           success: res => {
             const {
@@ -130,6 +135,15 @@ Page({
           this.setData({
             visible: true
           });
+        } else if (code === '403') {
+          const us = getApp().globalData.userInfo;
+          if (us) {
+            this.login(us)
+          } else {
+            this.setData({
+              visible: true
+            })
+          }
         }
       }
     })
